@@ -28,7 +28,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
+  ScrollController _scrollController = ScrollController();
+  bool _scrollable = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _isScrollable());
+  }
+
+  _isScrollable() {
+    print(_scrollController.position.extentAfter > 0);
+    _scrollable = _scrollController.position.extentAfter > 0;
     setState(() {});
   }
 
@@ -40,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
@@ -48,6 +59,53 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      height: 24,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(right: 24),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              controller: _scrollController,
+              children: <Widget>[
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+                Text('aaaindex'),
+              ],
+            ),
+          ),
+          if (_scrollable)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: FractionalOffset.centerRight,
+                    end: FractionalOffset.centerLeft,
+                    colors: [Colors.green, Colors.yellow],
+                    stops: [0.0, 1.0],
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
   }
 }
