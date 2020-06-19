@@ -38,12 +38,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(),
+      body: _buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  Widget _buildBody() {
+    return Container();
   }
 }
