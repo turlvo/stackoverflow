@@ -38,7 +38,41 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.network(
+            'https://wallpaperplay.com/walls/full/e/5/3/13586.jpg',
+            fit: BoxFit.cover,
+          ),
+          ColorFiltered(
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8),
+                BlendMode.srcOut), // This one will create the magic
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      backgroundBlendMode: BlendMode
+                          .dstOut), // This one will handle background + difference out
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
