@@ -42,29 +42,28 @@ class _MyHomePageState extends State<MyHomePage> {
         fit: StackFit.expand,
         children: [
           Image.network(
-            'https://wallpaperplay.com/walls/full/e/5/3/13586.jpg',
+            'https://www.pngitem.com/pimgs/m/162-1626069_calm-person-png-free-calm-person-transparent-images.png',
             fit: BoxFit.cover,
           ),
           ColorFiltered(
-            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8),
-                BlendMode.srcOut), // This one will create the magic
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.8), BlendMode.srcOut),
             child: Stack(
               fit: StackFit.expand,
               children: [
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.black,
-                      backgroundBlendMode: BlendMode
-                          .dstOut), // This one will handle background + difference out
+                      backgroundBlendMode: BlendMode.dstOut),
                 ),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
-                    height: 200,
-                    width: 200,
+                    height: 300,
+                    width: 300,
                     decoration: BoxDecoration(
                       color: Colors.red,
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(500),
                     ),
                   ),
                 ),
