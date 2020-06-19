@@ -28,8 +28,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
