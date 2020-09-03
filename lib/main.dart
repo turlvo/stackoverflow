@@ -49,6 +49,36 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      decoration: BoxDecoration(color: Colors.white),
+      padding: new EdgeInsets.all(20.0),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            child: TextField(
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                labelText: "Email ID",
+                labelStyle: TextStyle(
+                  color: Colors.grey,
+                ),
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 10,
+            top: 3,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 3),
+              color: Colors.white,
+              child: Text('Label'),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
