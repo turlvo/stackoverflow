@@ -37,18 +37,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Title'),
       ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: 200,
+          ),
+          child: Column(
+            children: [
+              for (var i = 0; i < 4; i++)
+                Expanded(
+                  child: Text("Text"),
+                ),
+            ],
+          ),
+        ),
       ),
     );
-  }
-
-  Widget _buildBody() {
-    return Container();
   }
 }
