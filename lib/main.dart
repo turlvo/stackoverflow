@@ -1,4 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,42 +17,63 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  File _fileimage;
+
+  final _picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              _fileimage != null
+                  ? Image.file(_fileimage)
+                  : Text('No image selected'),
+              RaisedButton(
+                onPressed: () async {
+                  _takePicture();
+                },
+                child: Text('hi'),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildBody() {
-    return Container();
+  void _takePicture() async {
+    final pickedImage = await _picker.getImage(source: ImageSource.gallery);
+
+    // if (pickedImage == null) {
+    //   return;
+    // }
+
+    File tmpFile = File(pickedImage.path);
+
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final String path = directory.path;
+
+    final String fileName =
+        basename(pickedImage.path); // Filename without extension
+    final String fileExtension = extension(pickedImage.path); // e.g.
+
+    tmpFile = await tmpFile.copy('$path/$fileName$fileExtension');
+    setState(() => _fileimage = tmpFile);
   }
 }
