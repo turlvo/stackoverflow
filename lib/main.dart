@@ -39,19 +39,24 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Title'),
       ),
-      body: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: 200,
-          ),
-          child: Column(
-            children: [
-              for (var i = 0; i < 4; i++)
-                Expanded(
-                  child: Text("Text"),
-                ),
-            ],
-          ),
+      body: Container(
+        height: 200,
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewportConstraints) {
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (var i = 0; i < 4; i++)
+                    Container(
+                      height: viewportConstraints.maxHeight / 3,
+                      color: Colors.grey.withOpacity(0.8),
+                      child: Text("Text$i"),
+                    ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
