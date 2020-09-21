@@ -1,54 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
+
+import 'bottom_navbar.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeColor());
 }
 
-class MyApp extends StatelessWidget {
+class ChangeColor extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _ChangeColorState();
+  }
+}
+
+class _ChangeColorState extends State<ChangeColor> {
+  List<Color> colorList = List(3);
+  int selectedId = 0;
+  void selectById(int id) {
+    setState(() {
+      selectedId = id;
+    });
+  }
+
+  Widget myContainer(int id) {
+    return InkWell(
+      child: Container(
+        width: 100,
+        color: selectedId == id ? Colors.teal : Colors.red,
+      ),
+      onTap: () {
+        selectById(id);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      home: Scaffold(
+        body: Center(
+          child: Container(
+            height: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return myContainer(index);
+              },
+            ),
+          ),
+        ),
       ),
     );
-  }
-
-  Widget _buildBody() {
-    return Container();
   }
 }
