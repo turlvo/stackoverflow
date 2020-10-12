@@ -1,5 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,21 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  _launchURL() async {
-    const url = 'https://forms.gle/mEwVA8jXmwJEFn5X6';
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: true,
-        enableJavaScript: true,
-        headers: {'User-Agent': 'aasdf'},
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _launchURL,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WebViewPage(),
+            ),
+          );
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
@@ -66,5 +60,46 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildBody() {
     return Container();
+  }
+}
+
+class WebViewPage extends StatefulWidget {
+  WebViewPage({Key key}) : super(key: key);
+
+  @override
+  _WebViewPageState createState() => _WebViewPageState();
+}
+
+class _WebViewPageState extends State<WebViewPage> {
+  final flutterWebviewPlugin = FlutterWebviewPlugin();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    flutterWebviewPlugin.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      type: MaterialType.transparency,
+      child: WebviewScaffold(
+        appBar: AppBar(
+          title: Text('WebView Page'),
+        ),
+        url: 'https://forms.gle/mEwVA8jXmwJEFn5X6',
+        userAgent: 'Fake',
+        clearCookies: false,
+        clearCache: false,
+        hidden: true,
+        appCacheEnabled: true,
+        supportMultipleWindows: true,
+      ),
+    );
   }
 }
