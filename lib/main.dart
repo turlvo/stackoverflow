@@ -49,6 +49,37 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Form(
+      onChanged: () {},
+      child: Row(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: [
+                Container(child: Text('a')),
+                Container(child: Text('a')),
+                Container(child: Text('a')),
+              ],
+            ),
+          ),
+          Container(
+              child: VerticalDivider(
+            color: Colors.red,
+            width: 1,
+          )),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                Container(child: Text('a')),
+                Container(child: Text('a')),
+                Container(child: Text('a')),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
