@@ -39,46 +39,51 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-
-  Widget _buildBody() {
-    return Form(
-      onChanged: () {},
-      child: Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Column(
-              children: [
-                Container(child: Text('a')),
-                Container(child: Text('a')),
-                Container(child: Text('a')),
-              ],
-            ),
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: Center(
+          child: Column(
+            children: [
+              Container(
+                child: Form(
+                  onChanged: () {},
+                  child: IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            children: [
+                              Container(child: Text('a')),
+                              Container(child: Text('a')),
+                              Container(child: Text('a')),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: VerticalDivider(
+                            color: Colors.red,
+                            width: 1,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            children: [
+                              Container(child: Text('a')),
+                              Container(child: Text('a')),
+                              Container(child: Text('a')),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          Container(
-              child: VerticalDivider(
-            color: Colors.red,
-            width: 1,
-          )),
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                Container(child: Text('a')),
-                Container(child: Text('a')),
-                Container(child: Text('a')),
-              ],
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
