@@ -48,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WebViewPage(),
+              builder: (context) =>
+                  WebViewPage(url: 'https://forms.gle/mEwVA8jXmwJEFn5X6'),
             ),
           );
         },
@@ -64,7 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class WebViewPage extends StatefulWidget {
-  WebViewPage({Key key}) : super(key: key);
+  final String url;
+  WebViewPage({Key key, this.url}) : super(key: key);
 
   @override
   _WebViewPageState createState() => _WebViewPageState();
@@ -92,7 +94,7 @@ class _WebViewPageState extends State<WebViewPage> {
         appBar: AppBar(
           title: Text('WebView Page'),
         ),
-        url: 'https://forms.gle/mEwVA8jXmwJEFn5X6',
+        url: widget.url,
         userAgent: 'Fake',
         clearCookies: false,
         clearCache: false,
