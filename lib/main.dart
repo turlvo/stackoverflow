@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,6 +34,21 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  _launchURL() async {
+    const url = 'https://forms.gle/mEwVA8jXmwJEFn5X6';
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+        headers: {'User-Agent': 'aasdf'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: _launchURL,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
