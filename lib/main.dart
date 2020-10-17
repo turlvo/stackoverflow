@@ -49,6 +49,37 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Drawer();
+  }
+}
+
+class Drawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        UserAccountsDrawerHeader(
+          accountName: Text("Anus"),
+          accountEmail: Text("Anus@gmail.com"),
+          currentAccountPicture: CircleAvatar(
+            backgroundImage: NetworkImage(
+                "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1158&q=80"),
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.person),
+          title: Text("Account"),
+          subtitle: Text("Personal"),
+          trailing: Icon(Icons.edit),
+        ),
+        ListTile(
+          leading: Icon(Icons.email),
+          title: Text("Email"),
+          subtitle: Text("anus@gmail.com"),
+          trailing: Icon(Icons.send),
+        ),
+      ],
+    );
   }
 }
