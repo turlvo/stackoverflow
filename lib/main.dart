@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: TestArea(),
     );
   }
 }
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _buildBody(),
+      body: TestArea(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Increment',
@@ -47,8 +48,73 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
 
-  Widget _buildBody() {
-    return Container();
+class TestArea extends StatefulWidget {
+  @override
+  _TestArea createState() => _TestArea();
+}
+
+class _TestArea extends State<TestArea> {
+  List<List<bool>> boo = [
+    [true, false, false],
+    [true, false, false],
+    [true, false, false],
+    [true, false, false],
+    [true, false, false],
+    [true, false, false],
+    [true, false, false],
+    [true, false, false],
+    [true, false, false],
+    [true, false, false]
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => print(json.encode(boo)),
+        child: Text('Save'),
+      ),
+      appBar: AppBar(
+        title: Text('Add your pets'),
+        actions: <Widget>[],
+      ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return Column(
+            children: <Widget>[
+              ListTile(
+                leading: Text('$index'),
+              ),
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
+                child: ToggleButtons(
+                  children: <Widget>[
+                    Icon(Icons.ac_unit),
+                    Icon(Icons.call),
+                    Icon(Icons.cake),
+                  ],
+                  onPressed: (int itemIndex) {
+                    setState(() {
+                      boo[index][itemIndex] = !boo[index][itemIndex];
+                    });
+                  },
+                  isSelected: boo[index],
+                ),
+              )
+            ],
+          );
+        },
+      ),
+    );
   }
 }
