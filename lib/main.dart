@@ -49,6 +49,31 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+        margin: EdgeInsets.all(30),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          border: Border.all(
+            color: Colors.grey,
+          ),
+        ),
+        child: Row(
+          children: [
+            IntrinsicWidth(
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: '12345678',
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
+                autocorrect: false,
+              ),
+            ),
+            Text(
+              '.slack.com',
+            ),
+          ],
+        ));
   }
 }
