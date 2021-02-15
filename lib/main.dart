@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -49,6 +50,42 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          AutoSizeText(
+            'Smart City',
+            maxLines: 1,
+            style: TextStyle(
+              fontSize: 100,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Divider(color: Colors.black),
+          AutoSizeText.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Advanced',
+                ),
+                TextSpan(
+                  text: ' urban',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(
+                  text: ' lighting solution',
+                ),
+              ],
+            ),
+            style: TextStyle(fontSize: 100),
+            maxLines: 1,
+          ),
+        ],
+      ),
+    );
   }
 }
