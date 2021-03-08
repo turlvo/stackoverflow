@@ -1,54 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:upgrader/upgrader.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  MyApp({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    final appcastURL =
+        'https://raw.githubusercontent.com/jeejaykim/apispa/jeejaykim-test/test.xml';
+    final cfg =
+        AppcastConfiguration(url: appcastURL, supportedOS: ['android', 'ios']);
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      title: 'Upgrader Example',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Upgrader Example'),
+        ),
+        body: UpgradeAlert(
+            dialogStyle: UpgradeDialogStyle.cupertino,
+            appcastConfig: cfg,
+            debugLogging: true,
+            showLater: false,
+            showIgnore: false,
+            minAppVersion: '120.0.0',
+            child: Container(width: 0, height: 0)),
       ),
     );
-  }
-
-  Widget _buildBody() {
-    return Container();
   }
 }
