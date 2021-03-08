@@ -49,6 +49,23 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      width: 250,
+      child: Row(
+        children: [
+          Text(
+            String.fromCharCode(1005),
+            style: TextStyle(color: Colors.black, fontSize: 25),
+          ),
+          Expanded(
+            child: Text(
+              'wwwwwwwwwwwwwwwwwwwwwwwwww',
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: Colors.black, fontSize: 15),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
