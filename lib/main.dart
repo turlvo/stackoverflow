@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -49,6 +50,50 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      child: Center(
+        child: new RichText(
+          text: new TextSpan(
+            children: [
+              new TextSpan(
+                text: 'Accept the ',
+                style: new TextStyle(color: Colors.black),
+              ),
+              new TextSpan(
+                text: 'Terms & Conditions',
+                style: new TextStyle(
+                    color: Colors.blue, fontWeight: FontWeight.bold),
+                recognizer: new TapGestureRecognizer()
+                  ..onTap = () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Dialog(
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                "Custom Dialog Demo",
+                              ),
+                              Text(
+                                "Hii all this is a custom dialog in flutter and  you will be use in your flutter applications",
+                              ),
+                              FlatButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Yes",
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
