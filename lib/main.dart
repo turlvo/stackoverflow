@@ -41,7 +41,31 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.blueGrey,
+            isScrollControlled: false,
+            builder: (context) => Wrap(
+              children: [
+                ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) => ListTile(
+                    title: Text(
+                      'lists[index].listName',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Divider(),
+                ),
+              ],
+            ),
+          );
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
