@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -73,6 +75,73 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    List<Product> listProduct = [
+      Product('Chicken Burger', 1, 20.5),
+      Product('Chicken Wrap', 1, 9.99),
+    ];
+    double totalAmount = 0;
+    for (var item in listProduct) {
+      totalAmount += (item.price * item.quantity);
+    }
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+      height: min((listProduct.length + 1) * 20.0 + 10, 100),
+      child: ListView(
+        children: [
+          ...listProduct
+              .map(
+                (prod) => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                        child: Text(
+                      prod.title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                    Text(
+                      '${prod.quantity}x \$. ${prod.price}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              )
+              .toList(),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  'Total',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+                Text(
+                  '$totalAmount',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                  ),
+                )
+              ])
+        ],
+      ),
+    );
   }
+}
+
+class Product {
+  String title;
+  int quantity;
+  double price;
+
+  Product(this.title, this.quantity, this.price);
 }
