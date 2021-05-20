@@ -1,3 +1,4 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,21 +14,124 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Example(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class Example extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ExampleState createState() => _ExampleState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ExampleState extends State<Example> {
+  int _currentIndex = 0;
+  PageController _pageController;
+  List<Widget> _pages = [];
+
+  final iconList = <IconData>[
+    Icons.brightness_5,
+    Icons.brightness_4,
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _currentIndex = 0;
+    _pages = [PageA(), PageB()];
+
+    _pageController = PageController(initialPage: _currentIndex);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('example')),
+      body: PageView(
+        controller: _pageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: _pages,
+      ),
+      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        itemCount: 2,
+        activeIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+            _pageController.jumpToPage(index);
+          });
+        },
+        tabBuilder: (int index, bool isActive) {
+          final color = isActive ? Color(0XFFFFA400) : Colors.grey;
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                iconList[index],
+                size: 24,
+                color: color,
+              ),
+              const SizedBox(height: 4),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  "Page $index",
+                  maxLines: 1,
+                  style: TextStyle(color: color),
+                ),
+              )
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class PageA extends StatefulWidget {
+  @override
+  _PageAState createState() => _PageAState();
+}
+
+class _PageAState extends State<PageA>
+    with AutomaticKeepAliveClientMixin<PageA> {
+  bool shouldKeepAlive = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  bool get wantKeepAlive => shouldKeepAlive;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    print('PageA is builded');
+
+    return TextField(
+      onChanged: (String value) {
+        if (!shouldKeepAlive && value.isEmpty) {
+          shouldKeepAlive = true;
+          updateKeepAlive();
+        } else if (shouldKeepAlive && value.isNotEmpty) {
+          shouldKeepAlive = false;
+          updateKeepAlive();
+        }
+      },
+    );
+  }
+}
+
+class PageB extends StatefulWidget {
+  @override
+  _PageBState createState() => _PageBState();
+}
+
+class _PageBState extends State<PageB> {
   @override
   void initState() {
     super.initState();
@@ -35,20 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-
-  Widget _buildBody() {
-    return Container();
+    print('PageB is builded');
+    return TextField();
   }
 }
