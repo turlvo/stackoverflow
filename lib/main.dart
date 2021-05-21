@@ -1,5 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:keyboard_visibility/keyboard_visibility.dart';
 
 void main() {
   runApp(MyApp());
@@ -98,10 +100,25 @@ class PageA extends StatefulWidget {
 class _PageAState extends State<PageA>
     with AutomaticKeepAliveClientMixin<PageA> {
   bool shouldKeepAlive = true;
-
+  String input;
   @override
   void initState() {
     super.initState();
+    KeyboardVisibilityNotification().addNewListener(
+      onChange: (bool visible) {
+        if (!visible) {
+          FocusManager.instance.primaryFocus.unfocus();
+          print('keyboard disappeared');
+          if (!shouldKeepAlive && input.isEmpty) {
+            shouldKeepAlive = true;
+            updateKeepAlive();
+          } else if (shouldKeepAlive && input.isNotEmpty) {
+            shouldKeepAlive = false;
+            updateKeepAlive();
+          }
+        }
+      },
+    );
   }
 
   @override
@@ -113,14 +130,12 @@ class _PageAState extends State<PageA>
     print('PageA is builded');
 
     return TextField(
+      onSubmitted: (String value) {
+        print('onSumitted: $value');
+      },
       onChanged: (String value) {
-        if (!shouldKeepAlive && value.isEmpty) {
-          shouldKeepAlive = true;
-          updateKeepAlive();
-        } else if (shouldKeepAlive && value.isNotEmpty) {
-          shouldKeepAlive = false;
-          updateKeepAlive();
-        }
+        input = value;
+        print('onChanged: $value');
       },
     );
   }
