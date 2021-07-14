@@ -40,15 +40,47 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      height: 400,
+      width: 400,
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          Container(
+            width: 280,
+            height: 280,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xFF4C4D4F),
+            ),
+          ),
+          Container(
+            width: 200,
+            height: 200,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+          Container(
+            width: 140,
+            height: 140,
+            child: Icon(
+              Icons.access_alarm,
+              color: Colors.white,
+              size: 30,
+            ),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xFF5EA2EB),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
