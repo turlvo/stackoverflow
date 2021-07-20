@@ -49,6 +49,65 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Test1();
+  }
+}
+
+class Test1 extends StatefulWidget {
+  @override
+  _Test1State createState() => _Test1State();
+}
+
+class _Test1State extends State<Test1> with TickerProviderStateMixin {
+  double topPosition = 10, leftPosition = 10;
+  double height = 100;
+  AnimationController _animationController;
+  Animation<double> _expandAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 3000));
+    _expandAnimation =
+        Tween(begin: 1.0, end: 0.0).animate(_animationController);
+    _animationController.forward();
+  }
+
+  bool showFlag = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('App Bar')),
+      body: Container(
+        padding: EdgeInsets.all(100),
+        child: Stack(
+          children: [
+            Container(
+              width: 200,
+              height: 200,
+              color: Colors.blue,
+            ),
+            SizeTransition(
+              axisAlignment: 1,
+              axis: Axis.vertical,
+              sizeFactor: _expandAnimation,
+              child: Container(
+                width: 200,
+                height: 200,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }
