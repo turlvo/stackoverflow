@@ -1,54 +1,97 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(TradingPage());
 }
 
-class MyApp extends StatelessWidget {
+class TradingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xffaa249e),
+          title: Text('Relatable'),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 6,
+                offset: Offset(0, 1),
+              )
+            ],
+          ),
+          height: 30.0,
+          child: SeasonListWidget(),
+        ),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+Season venus = Season('Venus');
+Season helado = Season('Helado');
+Season year1800s = Season('1800s');
+Season neon = Season('Neon');
+Season ritmo = Season('Ritmo');
+Season lente = Season('Lente');
+Season gemas = Season('Gemas');
 
-  final String title;
+var seasonsList = [venus, helado, year1800s, neon, ritmo, lente, gemas];
 
+class SeasonListWidget extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _SeasonListWidgetState createState() => _SeasonListWidgetState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SeasonListWidgetState extends State<SeasonListWidget> {
+  int clickedIndex = -1;
+
   @override
   void initState() {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+  Center seasonBarItem({@required Season season, @required index}) {
+    return Center(
+      child: Container(
+        child: TextButton(
+          onPressed: () {
+            setState(() {
+              clickedIndex = index;
+            });
+          },
+          child: Text(
+            season.name,
+            style: TextStyle(
+              color:
+                  clickedIndex == index ? Color(0xff000000) : Color(0xff808080),
+            ),
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildBody() {
-    return Container();
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemExtent: 75.0,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return seasonBarItem(season: seasonsList[index], index: index);
+      },
+    );
   }
+}
+
+class Season<Widget> {
+  String name;
+
+  Season(this.name);
+
+  void changeNameColor() {}
 }
