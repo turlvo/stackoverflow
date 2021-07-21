@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'gradient_decoration.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -36,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -49,6 +52,37 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Center(
+      child: Container(
+        width: 300,
+        height: 80,
+        decoration: GradientShadowBoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0.0, 0.0),
+                blurRadius: 50,
+              ),
+            ],
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.blue,
+                Colors.purple,
+              ],
+            )),
+        child: Center(
+          child: Text(
+            'Login',
+            style: TextStyle(
+              fontSize: 25.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
