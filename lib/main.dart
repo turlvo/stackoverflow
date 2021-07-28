@@ -49,6 +49,53 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+        height: 70,
+        color: Color(0XFFFFA000),
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 30,
+                    ),
+                    margin: EdgeInsets.only(left: 30),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      'El ilustre',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                  Icon(Icons.arrow_forward, color: Colors.white),
+                ],
+              ),
+              Positioned(
+                left: 0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(35.0),
+                  child: Image.network(
+                    'https://i.ibb.co/1vXpqVs/flutter-logo.jpg',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
