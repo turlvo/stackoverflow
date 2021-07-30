@@ -28,9 +28,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GlobalKey _key = GlobalKey();
+  double _sizeOfColumn = 0.0;
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _sizeOfColumn = _key.currentContext.size.height;
+      });
+    });
   }
 
   @override
@@ -49,6 +57,30 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Stack(
+      children: [
+        Container(
+          color: Colors.grey,
+          height: _sizeOfColumn,
+        ),
+        Container(
+          key: _key,
+          color: Colors.yellow,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text("a"),
+              Text("b"),
+              Text("c"),
+              Text("a"),
+              Text("b"),
+              Text("c"),
+              //maybe more widgets..
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
