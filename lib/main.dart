@@ -49,112 +49,112 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                'Red',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Text(
+                  'Red',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '-----Slider-----',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.red,
+              Expanded(
+                flex: 3,
+                child: Slider(
+                  value: 0.8,
+                  inactiveColor: Colors.red,
+                  activeColor: Colors.red,
+                  onChanged: (value) {},
                 ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                '202.0',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
+              Expanded(
+                flex: 1,
+                child: Text(
+                  '202.0',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                'Green',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Text(
+                  'Green',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '-----Slider-----',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.green,
+              Expanded(
+                flex: 3,
+                child: Slider(
+                  value: 0.7,
+                  inactiveColor: Colors.green,
+                  activeColor: Colors.green,
+                  onChanged: (value) {},
                 ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                '160.0',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
+              Expanded(
+                flex: 1,
+                child: Text(
+                  '160.0',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                'Blue',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Text(
+                  'Blue',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '-----Slider-----',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blue,
+              Expanded(
+                flex: 3,
+                child: Slider(
+                  value: 0.6,
+                  inactiveColor: Colors.blue,
+                  activeColor: Colors.blue,
+                  onChanged: (value) {},
                 ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                '173.0',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
+              Expanded(
+                flex: 1,
+                child: Text(
+                  '173.0',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
