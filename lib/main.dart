@@ -28,9 +28,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String text =
+      'Cza Czo Czi Cze Czy Czu Czą Czę Czó\nacz ocz icz ecz ycz ucz ącz ęcz ócz\n\nSza Szo Szi Sze Szy Szu Szą Szę Szó\nasz osz isz esz ysz usz ąsz ęsz ósz\n\nDza Dzo Dzi Dze Dzy Dzu Dzą Dzę Dzó\nadz odz idz edz ydz udz ądz ędz ódz';
+  List<String> stringList;
   @override
   void initState() {
     super.initState();
+    stringList = text.split("\n");
+    stringList.forEach((e) => print(e));
   }
 
   @override
@@ -49,6 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      color: Colors.yellow[800],
+      height: double.maxFinite,
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: stringList.length,
+        itemBuilder: (context, i) => Text(
+          stringList[i],
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 14,
+          ),
+        ),
+      ),
+    );
   }
 }
