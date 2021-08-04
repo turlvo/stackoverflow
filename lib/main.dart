@@ -28,6 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int selectedOption = 0;
   @override
   void initState() {
     super.initState();
@@ -36,14 +37,35 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Card(
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              color: Color(0xFFF5F5F5),
+              // onTap is here
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    selectedOption = 1;
+                  });
+                },
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: selectedOption == 1 ? Colors.black : Colors.cyan,
+                  ),
+                  child: Text(
+                    'Hello World',
+                    style: TextStyle(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
