@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,6 +50,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    String dateOBDCommand = '2021-07-13T13:15:54.000000Z';
+    DateTime date = DateTime.parse(dateOBDCommand);
+    String result = DateFormat('yyyy-MM-dd H:m:s').format(date);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          'before : ' + dateOBDCommand,
+        ),
+        Text(
+          'after : ' + result.toString(),
+        ),
+      ],
+    );
   }
 }
