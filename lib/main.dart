@@ -40,15 +40,42 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 
   Widget _buildBody() {
-    return Container();
+    List strList = ['test', '\nhttps://google.com', '\ntest'];
+
+    List<List<Widget>> rowsChildrens = [];
+    List<Widget> rowChildren = [];
+    for (var index = 0; index < strList.length; index++) {
+      if (strList[index].startsWith('\n') && rowChildren.isNotEmpty) {
+        rowsChildrens.add(rowChildren);
+        rowChildren = [];
+      }
+
+      final String trimedStr = strList[index].trim();
+      if (trimedStr.startsWith('http')) {
+        rowChildren.add(
+          InkWell(
+            onTap: () {
+              print(trimedStr);
+            },
+            child: Text(trimedStr),
+          ),
+        );
+      } else {
+        rowChildren.add(
+          Text(trimedStr),
+        );
+      }
+    }
+    rowsChildrens.add(rowChildren);
+
+    return Column(
+      children: rowsChildrens
+          .map<Widget>((rowChildren) => Row(children: rowChildren))
+          .toList(),
+    );
   }
 }
