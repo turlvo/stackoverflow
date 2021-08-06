@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     focusNode.addListener(() {
-      print(focusNode.hasFocus);
+      print('1:  ${focusNode.hasFocus}');
     });
   }
 
@@ -48,8 +48,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return TextField(
-      focusNode: focusNode,
+    return Column(
+      children: [
+        TextField(
+          focusNode: focusNode,
+        ),
+        Focus(
+          child: TextField(),
+          onFocusChange: (hasFocus) {
+            print('2:  $hasFocus');
+          },
+        )
+      ],
     );
   }
 }
