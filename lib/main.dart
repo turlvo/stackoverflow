@@ -28,9 +28,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  FocusNode focusNode = FocusNode();
   @override
   void initState() {
     super.initState();
+    focusNode.addListener(() {
+      print(focusNode.hasFocus);
+    });
   }
 
   @override
@@ -40,15 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 
   Widget _buildBody() {
-    return Container();
+    return TextField(
+      focusNode: focusNode,
+    );
   }
 }
