@@ -86,7 +86,6 @@ Widget buildWidget() {
                 children: [
                   Text(
                     'shortArticle.label!shortArticle.label!shortArticle.l!shortArticle.label!',
-                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                   ),
                   Text(
