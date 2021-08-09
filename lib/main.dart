@@ -49,6 +49,45 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return ListView.builder(
+        itemCount: 5,
+        padding: EdgeInsets.only(left: 16, right: 16),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Container(
+            // height: 76,
+            margin: EdgeInsets.only(bottom: 13),
+            padding: EdgeInsets.only(left: 24, top: 12, bottom: 12, right: 22),
+            decoration: BoxDecoration(
+                color: Color(0xFFFFFFFF),
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 50,
+                      color: Colors.blue.withOpacity(0.23))
+                ]),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  height: 57,
+                  width: 57,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/image_1.png"))),
+                ),
+                SizedBox(
+                  width: 13,
+                ),
+                Expanded(
+                  child: Text(
+                    "testing123451 testing123451 testing123451 testing123451",
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
