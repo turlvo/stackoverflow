@@ -49,6 +49,62 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: Column(children: [
+        buildWidget(),
+        buildWidget(),
+      ]),
+    );
   }
+}
+
+Widget buildWidget() {
+  return GestureDetector(
+    onTap: () {},
+    child: Padding(
+      padding: EdgeInsets.only(
+        bottom: 14,
+      ),
+      child: Container(
+        // height: 70.scaled,
+        // decoration: BoxDecoration(
+        //   boxShadow: [verySoftDarkShadow],
+        //   color: white,
+        //   borderRadius: BorderRadius.circular(10.scaled),
+        // ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 20,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'shortArticle.label!shortArticle.label!shortArticle.l!shortArticle.label!',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'asdfasdf',
+                    style: TextStyle(fontSize: 11),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.favorite,
+              color: Colors.pink,
+              size: 24.0,
+              semanticLabel: 'Text to announce in accessibility modes',
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
