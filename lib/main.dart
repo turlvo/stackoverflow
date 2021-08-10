@@ -120,86 +120,115 @@ class _MyHomePageState extends State<MyHomePage>
                 body: TabBarView(
                   controller: _tabController,
                   children: [
-                    Column(
-                      children: [
-                        // RoundedPicture(),
-                        Icon(
-                          Icons.favorite,
-                          color: Colors.pink,
-                          size: 150.0,
-                          semanticLabel:
-                              'Text to announce in accessibility modes',
-                        ),
-                        FittedBox(
-                          child: Text("Hello World",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 40)),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 600),
+                        child: Column(
                           children: [
-                            RichText(
-                              text: TextSpan(
+                            // RoundedPicture(),
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.pink,
+                              size: 150.0,
+                              semanticLabel:
+                                  'Text to announce in accessibility modes',
+                            ),
+                            FittedBox(
+                              child: Text("Hello World",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
-                                      fontSize: 20),
-                                  text: 'Info1:  ',
-                                  children: [
-                                    TextSpan(
-                                      text: "123",
-                                      style: TextStyle(),
-                                    ),
-                                  ]),
+                                      fontSize: 40)),
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            RichText(
-                              text: TextSpan(
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 20),
-                                  text: 'Info2:  ',
-                                  children: [
-                                    TextSpan(
-                                      text: "abcd",
-                                      style: TextStyle(),
-                                    ),
-                                  ]),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 20),
-                                  text: 'Info3:  ',
-                                  children: [
-                                    TextSpan(
-                                      text: "xyz",
-                                      style: TextStyle(),
-                                    ),
-                                  ]),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                RichText(
+                                  text: TextSpan(
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 20),
+                                      text: 'Info1:  ',
+                                      children: [
+                                        TextSpan(
+                                          text: "123",
+                                          style: TextStyle(),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 20),
+                                      text: 'Info2:  ',
+                                      children: [
+                                        TextSpan(
+                                          text: "abcd",
+                                          style: TextStyle(),
+                                        ),
+                                      ]),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 20),
+                                      text: 'Info3:  ',
+                                      children: [
+                                        TextSpan(
+                                          text: "xyz",
+                                          style: TextStyle(),
+                                        ),
+                                      ]),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
-                    Center(
-                      child: Text("TITLE2"),
+                    SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 600),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(bottom: 600),
+                              child: Center(
+                                child: Text("TITLE2"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    Center(
-                      child: Text("TITLE3"),
+                    SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 600),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(bottom: 600),
+                              child: Center(
+                                child: Text("TITLE3"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
