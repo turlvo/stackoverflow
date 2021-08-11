@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -19,8 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
+  MyHomePage({Key key, @required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -28,9 +26,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
+  final _subscriptionFormKey = GlobalKey<FormState>();
+
+  void _validate() {
+    if (_subscriptionFormKey.currentState.validate()) {}
   }
 
   @override
@@ -39,16 +38,48 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _buildBody(),
+      body: Form(
+        key: _subscriptionFormKey,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
+                  validator: (message) {
+                    if (message == null || message.isEmpty) {
+                      return 'Empty field';
+                    }
+                    return null;
+                  },
+                  maxLength: 300,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
+                  validator: (message) {
+                    if (message == null || message.isEmpty) {
+                      return 'Empty field';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: _validate,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
     );
-  }
-
-  Widget _buildBody() {
-    return Container();
   }
 }
