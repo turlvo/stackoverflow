@@ -30,7 +30,7 @@ class Gallery extends StatefulWidget {
 class _GalleryState extends State<Gallery> {
   pic() async {
     var url = "http://120.76.247.131:8081/findAllImages";
-    var response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
     return json.decode(response.body);
   }
 
@@ -52,17 +52,17 @@ class _GalleryState extends State<Gallery> {
           if (snapshot.hasError) print(snapshot.error);
           return snapshot.hasData
               ? ListView.builder(
-                  itemCount: snapshot.data['data'].length,
+                  itemCount: (snapshot.data! as Map)['data'].length,
                   itemBuilder: (context, index) {
                     // List list = pic() as List;
-                    print(snapshot.data['data'][index]);
+                    print((snapshot.data! as Map)['data'][index]);
                     return Card(
                         child: ListTile(
                       title: Container(
                         width: 100,
                         height: 100,
                         child: Image.network(
-                            snapshot.data['data'][index]['image']),
+                            (snapshot.data! as Map)['data'][index]['image']),
                       ),
                     ));
                   })
