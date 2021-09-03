@@ -49,6 +49,47 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Column(
+      children: [
+        Center(
+          child: Text(
+            'hello 你好',
+            style: TextStyle(backgroundColor: Colors.red, fontSize: 24),
+          ),
+        ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: Text(
+                "hello",
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+                strutStyle: StrutStyle(
+                  height: 1.5,
+                  fontSize: 24,
+                ),
+              ),
+              color: Colors.red,
+            ),
+            Container(
+              child: Text(
+                "你好",
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+                strutStyle: StrutStyle(
+                  height: 1.5,
+                  fontSize: 24,
+                ),
+              ),
+              color: Colors.red,
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
