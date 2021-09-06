@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,7 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _buildBody(),
+      body: FutureBuilder(
+          future: getUint8ListFromImage(
+              'https://www.svgrepo.com/show/19461/url-link.svg'),
+          builder: (context, snapshot) {
+            print(snapshot);
+            return Container();
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Increment',
@@ -48,7 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildBody() {
-    return Container();
+  Future<Uint8List> getUint8ListFromImage(imgUrl) async {
+    //Get the image from the URL and then convert it to Uint8List
+    Uint8List bytes = (await NetworkAssetBundle(Uri.parse(imgUrl)).load(imgUrl))
+        .buffer
+        .asUint8List();
+
+    print(bytes);
+
+    return bytes;
   }
 }
