@@ -28,6 +28,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  ScrollController _scrollController = ScrollController();
+  double hhhh = 30;
+  String title = 'False';
+
   @override
   void initState() {
     super.initState();
@@ -35,13 +39,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((duration) {
+      print("${_scrollController.position.maxScrollExtent}");
+      // prints true if scrollable else false
+      print(
+          "isScrollable = ${_scrollController.position.maxScrollExtent != 0}");
+      title = '${_scrollController.position.maxScrollExtent != 0}';
+    });
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            if (hhhh == 30) {
+              hhhh = 3333;
+            } else {
+              hhhh = 30;
+            }
+          });
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
@@ -49,6 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return ListView(
+      controller: _scrollController,
+      children: [
+        Container(height: hhhh, child: Text('a')),
+        Container(height: 30, child: Text('a')),
+        Container(height: 30, child: Text('a')),
+        Container(height: 30, child: Text('a')),
+      ],
+    );
   }
 }
