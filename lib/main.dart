@@ -36,14 +36,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      // backgroundColor: kBackgroundColor,
+      body: ListView(
+        padding: EdgeInsets.zero,
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        children: [
+          Container(height: 300, child: Text('111asdf')),
+          Container(height: 300, child: Text('asdf')),
+          Container(height: 300, child: Text('2222asdf')),
+          Container(height: 300, child: Text('asdf')),
+          Text('asdf'),
+          Text('asdf'),
+          Text('asdf'),
+          Text('asdf'),
+        ],
       ),
     );
   }
