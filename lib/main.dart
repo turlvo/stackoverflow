@@ -28,9 +28,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double firstContainerWidth = 0;
+  GlobalKey firstContainerKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      firstContainerWidth = firstContainerKey.currentContext.size.width;
+      setState(() {});
+    });
   }
 
   @override
@@ -54,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         alignment: AlignmentDirectional.bottomStart,
         children: <Widget>[
           Positioned(
-            right: -135,
+            left: firstContainerWidth - 10,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               decoration: BoxDecoration(
@@ -71,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Container(
+            key: firstContainerKey,
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
               color: Colors.red,
