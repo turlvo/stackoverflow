@@ -49,6 +49,35 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    List data = ['biscuits', 'cakes', 'drinks', 'snacks', 'food'];
+
+    return Container(
+      color: Colors.yellow[100],
+      height: 60,
+      width: 300,
+      child: Wrap(
+        direction: Axis.horizontal,
+        children: data.map((item) {
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                    radius: 05, backgroundColor: Color(0xffC4C4C4)),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Expanded(
+                  child: Text(
+                    item,
+                  ),
+                ),
+              ),
+            ],
+          );
+        }).toList(),
+      ),
+    );
   }
 }
