@@ -231,87 +231,88 @@ class _Calendar_pageState extends State<Calendar_page> {
             ],
           ),
           const SizedBox(height: 5),
-          Container(
-            height: 185,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border.all(width: 1, color: Colors.grey),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            margin: const EdgeInsets.only(right: 70, left: 30),
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  sub,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: 185),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1, color: Colors.grey),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              margin: const EdgeInsets.only(right: 70, left: 30),
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    sub,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CircleAvatar(
-                      radius: 9,
-                      backgroundImage: NetworkImage(
-                          "https://i.pinimg.com/originals/90/c8/d0/90c8d0fde36b92c18a6c19a06b4b2735.jpg"),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          Teach,
-                          style: const TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.description, size: 20),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Expanded(
-                      child: Column(
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const CircleAvatar(
+                        radius: 9,
+                        backgroundImage: NetworkImage(
+                            "https://i.pinimg.com/originals/90/c8/d0/90c8d0fde36b92c18a6c19a06b4b2735.jpg"),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Subject Description",
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
                           Text(
-                            des,
-                            overflow: TextOverflow.fade,
+                            Teach,
                             style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 10,
+                              fontSize: 12,
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(Icons.description, size: 20),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Subject Description",
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              des,
+                              overflow: TextOverflow.fade,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
