@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -13,42 +17,66 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage_1(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class MyHomePage_1 extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePage_1State createState() => _MyHomePage_1State();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class _MyHomePage_1State extends State<MyHomePage_1> {
+  GlobalKey _globalKey = GlobalKey();
+  var _bytes;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      appBar: AppBar(title: Text("Screenshot Example")),
+      body: Column(
+        children: [
+          Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 250,
+                  height: 250,
+                  color: Colors.teal,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onLongPress: () async {
+                          final render = (_globalKey.currentContext
+                              .findRenderObject() as RenderRepaintBoundary);
+                          final imageBytes = (await (await render.toImage())
+                                  .toByteData(format: ImageByteFormat.png))
+                              .buffer
+                              .asUint8List();
+                          setState(() {
+                            _bytes = imageBytes;
+                          });
+                        },
+                        child: RepaintBoundary(
+                          key: _globalKey,
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+
+          /// display
+          if (_bytes != null) Image.memory(_bytes, width: 250),
+        ],
       ),
     );
-  }
-
-  Widget _buildBody() {
-    return Container();
   }
 }
