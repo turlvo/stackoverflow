@@ -49,6 +49,42 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return ListView.builder(
+      itemCount: 60,
+      itemBuilder: (BuildContext ctx, int index) {
+        double opcaity = (1.0 - 0.01 * index) < 0 ? 0 : (1.0 - 0.01 * index);
+        return Stack(
+          children: [
+            Container(
+              height: 50,
+              width: double.infinity,
+              color: Colors.blue.withOpacity(opcaity),
+              child: Text(
+                '$index',
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Positioned(
+              right: 0,
+              child: Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.white.withOpacity(0.1),
+                  child: Text(
+                    '0',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
+                  )),
+            )
+          ],
+        );
+      },
+    );
   }
 }
