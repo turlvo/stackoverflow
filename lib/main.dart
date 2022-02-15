@@ -26,24 +26,16 @@ class SampleExample extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            height: 300,
-            width: MediaQuery.of(context).size.width,
-            child: Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.vertical(
-                    bottom: Radius.elliptical(
-                        MediaQuery.of(context).size.width, 120.0)),
-              ),
+            height: 250.0,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.vertical(
+                  bottom: Radius.elliptical(
+                      MediaQuery.of(context).size.width, 120.0)),
             ),
           ),
         ],
       ),
     );
-  }
-
-  Widget _buildBody() {
-    return Container();
   }
 }
