@@ -49,6 +49,30 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return SizedBox(
+      width: 150,
+      child: Stack(
+        children: [
+          TextField(
+            textAlign: TextAlign.center,
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(vertical: 5),
+              hintStyle: TextStyle(fontSize: 20),
+              hintText: "Bugün",
+            ),
+          ),
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Icon(
+                Icons.keyboard_arrow_down_outlined,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
