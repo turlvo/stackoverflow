@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timelines/timelines.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,6 +50,23 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    return Container();
+    return Container(
+      alignment: Alignment.topLeft,
+      child: FixedTimeline.tileBuilder(
+        theme: TimelineTheme.of(context).copyWith(
+          nodePosition: 0,
+        ),
+        builder: TimelineTileBuilder.fromStyle(
+          contentsAlign: ContentsAlign.basic,
+          connectorStyle: ConnectorStyle.solidLine,
+          indicatorStyle: IndicatorStyle.outlined,
+          contentsBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Text('Timeline Event $index'),
+          ),
+          itemCount: 3,
+        ),
+      ),
+    );
   }
 }
